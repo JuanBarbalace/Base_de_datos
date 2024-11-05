@@ -76,7 +76,9 @@ void Fecha::cargar()
 
         if (!diaEsValido() || !mesEsValido() || !anioEsValido())
         {
-            cout << "Fecha invalida, intente nuevamente." << endl;
+            cout << "+--------------------------------------+" << endl;
+            cout << "|  Fecha invalida, intente nuevamente  |" << endl;
+            cout << "+--------------------------------------+" << endl;
             system("pause");
             system("cls");
         }

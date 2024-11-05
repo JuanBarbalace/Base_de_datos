@@ -50,7 +50,6 @@ Fecha Persona::getFechaNac() const
     return _fechaNac;
 }
 
-
 void Persona::setNombre(const char* nombre)
 {
     strcpy(_nombre, nombre);
@@ -86,29 +85,28 @@ void Persona::setFechaNac(const Fecha& fechaNac)
     _fechaNac = fechaNac;
 }
 
-
 void Persona::cargar()
 {
-    cout << "Ingrese el nombre: ";
+    cout << "Ingrese el Nombre: ";
     cin.ignore();
     cin.getline(_nombre, sizeof(_nombre));
 
-    cout << "Ingrese el apellido: ";
+    cout << "Ingrese el Apellido: ";
     cin.getline(_apellido, sizeof(_apellido));
 
-    cout << "Ingrese el n£mero de documento: ";
+    cout << "Ingrese el Numero de Documento: ";
     cin.getline(_nroDoc, sizeof(_nroDoc));
 
-    cout << "Ingrese la direcci¢n: ";
+    cout << "Ingrese la Direcci¢n: ";
     cin.getline(_direccion, sizeof(_direccion));
 
-    cout << "Ingrese el tel‚fono: ";
+    cout << "Ingrese el Tel‚fono: ";
     cin.getline(_telefono, sizeof(_telefono));
 
-    cout << "Ingrese el email: ";
+    cout << "Ingrese el Email: ";
     cin.getline(_email, sizeof(_email));
 
-    cout << "Ingrese la fecha de nacimiento (dd/mm/aaaa): " << endl;
+    cout << "Ingrese la Fecha de Nacimiento (dd/mm/aaaa): " << endl;
     _fechaNac.cargar();
 }
 
@@ -120,7 +118,7 @@ void Persona::mostrar()
     cout << "Direccion: " << _direccion << endl;
     cout << "Telefono: " << _telefono << endl;
     cout << "Email: " << _email << endl;
-    cout << "Fecha Nacimiento: ";
+    cout << "Fecha de Nacimiento: ";
     _fechaNac.mostrar();
     cout << endl;
 }

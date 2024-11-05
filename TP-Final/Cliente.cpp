@@ -14,12 +14,10 @@ int Cliente::getIdCliente() const
     return _idCliente;
 }
 
-
 void Cliente::setIdCliente(const int idCliente)
 {
     _idCliente = idCliente;
 }
-
 
 void Cliente::cargar()
 {
@@ -29,7 +27,9 @@ void Cliente::cargar()
     Persona::cargar();
 
     system("cls");
-    cout << "Datos cargados correctamente." << endl;
+    cout << "+--------------------------------+" << endl;
+    cout << "|  Datos cargados correctamente  |" << endl;
+    cout << "+--------------------------------+" << endl;
     system("pause");
     system("cls");
 }

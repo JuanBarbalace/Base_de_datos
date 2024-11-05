@@ -14,12 +14,10 @@ int Proveedor::getIdProveedor() const
     return _idProveedor;
 }
 
-
 void Proveedor::setIdProveedor(const int idProveedor)
 {
     _idProveedor = idProveedor;
 }
-
 
 void Proveedor::cargar()
 {
@@ -28,7 +26,9 @@ void Proveedor::cargar()
     Persona::cargar();
 
     system("cls");
-    cout << "Datos cargados correctamente." << endl;
+    cout << "+--------------------------------+" << endl;
+    cout << "|  Datos cargados correctamente  |" << endl;
+    cout << "+--------------------------------+" << endl;
     system("pause");
     system("cls");
 }

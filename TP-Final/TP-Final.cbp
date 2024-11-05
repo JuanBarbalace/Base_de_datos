@@ -36,12 +36,18 @@
 		</Compiler>
 		<Unit filename="ArchivoClientes.cpp" />
 		<Unit filename="ArchivoClientes.h" />
+		<Unit filename="ArchivoEmpleados.cpp" />
+		<Unit filename="ArchivoEmpleados.h" />
+		<Unit filename="ArchivoProveedores.cpp" />
+		<Unit filename="ArchivoProveedores.h" />
 		<Unit filename="Cliente.cpp" />
 		<Unit filename="Cliente.h" />
 		<Unit filename="Empleado.cpp" />
 		<Unit filename="Empleado.h" />
 		<Unit filename="Fecha.cpp" />
 		<Unit filename="Fecha.h" />
+		<Unit filename="Menu.cpp" />
+		<Unit filename="Menu.h" />
 		<Unit filename="Persona.cpp" />
 		<Unit filename="Persona.h" />
 		<Unit filename="Proveedor.cpp" />

@@ -9,8 +9,9 @@ class ArchivoClientes
 
         bool agregarCliente(const Cliente &cliente);
         void mostrarCliente(int idCliente);
-        void modificarCliente(int idCliente, const Cliente &clienteActualizado);
+        void modificarCliente(int idCliente, const Cliente &clienteAModificar);
         void listaClientes();
+        int buscarPorId(int idCliente);
 
     private:
         std::string _fileName;
@@ -18,5 +19,4 @@ class ArchivoClientes
         Cliente buscarCliente(int posicion);
         bool modificar(int posicion, const Cliente &cliente);
         int getCantidadRegistros();
-        int buscarPorId(int idCliente);
 };
