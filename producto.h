@@ -9,6 +9,10 @@ using namespace std;
 
 class Producto {
 private:
+     // categoria se puede clasificar mejor con una clase categoria
+
+public:
+
     int id;
     char nombre[50];
     char descripcion[100];
@@ -17,24 +21,15 @@ private:
     int stock;
     int stockMin;
     int stockMax;
-    char categoria[30]; // categoria se puede clasificar mejor con una clase categoria
-
-public:
-    // Constructor
-    /*Producto(int id, const char* nombre, const char* descripcion, float precioCompra, float precioVenta, int stock, int stockMin, int stockMax, const char* categoria)
-        : id(id), precioCompra(precioCompra), precioVenta(precioVenta), stock(stock), stockMin(stockMin), stockMax(stockMax) {
-        strcpy(this->nombre, nombre);
-        strcpy(this->descripcion, descripcion);
-        strcpy(this->categoria, categoria);
-    }*/
+    char categoria[30];
 
     // Métodos de registro, modificación, eliminación
     void registrar() {
 
-        cout << "Ingrese el ID del producto: ";
-        cin >> id;
+        //cout << "Ingrese el ID del producto: ";
+        //cin >> id;
 
-        cin.ignore(); // Limpiar el buffer antes de leer cadenas de texto
+        //cin.ignore(); // Limpiar el buffer antes de leer cadenas de texto
 
         cout << "Ingrese el nombre del producto: ";
         cin.getline(nombre, 50);
@@ -65,111 +60,11 @@ public:
         cout << "Producto registrado con éxito.\n";
     }
 
-     // Método para registrar el producto en el archivo
-    void guardarEnArchivo(const char* nombreArchivo) {
-        FILE* archivo = fopen(nombreArchivo, "ab"); // "ab" para añadir en binario
-        if (archivo == nullptr) {
-            cerr << "No se pudo abrir el archivo para escritura.\n";
-            return;
-        }
-        fwrite(this, sizeof(Producto), 1, archivo);
-        fclose(archivo);
-        cout << "Producto guardado en archivo.\n";
-    }
-
-    // Método para mostrar los productos guardados en el archivo
-    void mostrarProductos() {
-        FILE* archivo = fopen("productos.dat", "rb");
-        if (archivo == nullptr) {
-            cerr << "No se pudo abrir el archivo para lectura.\n";
-            return;
-        }
-
-        while (fread(this, sizeof(Producto), 1, archivo) == 1) {
-            this->mostrar();
-        }
-        fclose(archivo);
-    }
-
     void mostrar() const {
         cout << "ID: " << id << "\nNombre: " << nombre << "\nDescripcion: " << descripcion
              << "\nPrecio Compra: " << precioCompra << "\nPrecio Venta: " << precioVenta
              << "\nStock: " << stock << "\nStock Minimo: " << stockMin << "\nStock Maximo: " << stockMax
              << "\nCategoria: " << categoria << "\n\n";
-    }
-
-    // Método para buscar un producto por ID
-    static Producto buscarProducto(int idBusqueda) {
-        FILE* archivo = fopen("productos.dat", "rb");
-        if (archivo == nullptr) {
-            cerr << "No se pudo abrir el archivo para lectura.\n";
-            return Producto();
-        }
-
-        Producto producto;
-        while (fread(&producto, sizeof(Producto), 1, archivo) == 1) {
-            if (producto.id == idBusqueda) {
-                fclose(archivo);
-                cout << "Producto con ID " << idBusqueda << " encontrado.\n";
-                producto.mostrar(); // se puede quitar no es necesario tenerlo
-                return producto;
-            }
-        }
-        fclose(archivo);
-        cout << "Producto con ID " << idBusqueda << " no encontrado.\n";
-        return Producto(); // Retorna un producto vacío si no se encuentra
-    }
-
-    // Método para modificar un producto en el archivo
-    static void modificarProducto(int idBusqueda, const Producto& productoModificado) {
-        FILE* archivo = fopen("productos.dat", "r+b"); // "r+b" para leer y escribir en binario
-        if (archivo == nullptr) {
-            cerr << "No se pudo abrir el archivo para modificación.\n";
-            return;
-        }
-        Producto producto;
-        while (fread(&producto, sizeof(Producto), 1, archivo) == 1) {
-            if (producto.id == idBusqueda) {
-                fseek(archivo, -sizeof(Producto), SEEK_CUR);
-                fwrite(&productoModificado, sizeof(Producto), 1, archivo);
-                cout << "Producto modificado con éxito.\n";
-                fclose(archivo);
-                return;
-            }
-        }
-        cerr << "Producto con ID " << idBusqueda << " no encontrado.\n";
-        fclose(archivo);
-    }
-
-    // Método para eliminar un producto del archivo
-    static void eliminarProducto(int idBusqueda) {
-        FILE* archivo = fopen("productos.dat", "rb");
-        FILE* archivoTemp = fopen("temp.dat", "wb");
-        if (archivo == nullptr || archivoTemp == nullptr) {
-            cerr << "No se pudo abrir los archivos para eliminación.\n";
-            return;
-        }
-
-        Producto producto;
-        bool encontrado = false;
-        while (fread(&producto, sizeof(Producto), 1, archivo) == 1) {
-            if (producto.id == idBusqueda) {
-                encontrado = true;
-            } else {
-                fwrite(&producto, sizeof(Producto), 1, archivoTemp);
-            }
-        }
-        fclose(archivo);
-        fclose(archivoTemp);
-
-        remove("productos.dat");
-        rename("temp.dat", "productos.dat");
-
-        if (encontrado) {
-            cout << "Producto eliminado con éxito.\n";
-        } else {
-            cout << "Producto con ID " << idBusqueda << " no encontrado.\n";
-        }
     }
 
     void modificar(const char* nuevoNombre, const char* nuevaDescripcion, float nuevoPrecioCompra, float nuevoPrecioVenta, int nuevoStock, int nuevoStockMin, int nuevoStockMax, const char* nuevaCategoria) {
@@ -223,7 +118,146 @@ public:
     void setCategoria(const char* nuevaCategoria) { strcpy(categoria, nuevaCategoria); }
 };
 
+class ArchivoProducto{
+private:
 
+    const char* _fileName;
+
+public:
+
+    ArchivoProducto() { _fileName = "productos.dat"; }
+
+
+    void mostrarProductos() {
+        FILE* archivo = fopen(_fileName, "rb");
+        if (archivo == nullptr) {
+            cout << "No se pudo abrir el archivo para lectura.\n";
+            return;
+        }
+        Producto producto;
+        while (fread(&producto, sizeof(Producto), 1, archivo) == 1) {
+            producto.mostrar();
+        }
+        fclose(archivo);
+    }
+
+    // Método para eliminar un producto del archivo
+    void eliminarProducto(int idBusqueda) {
+        FILE* archivo = fopen(_fileName, "rb");
+        FILE* archivoTemp = fopen("temp.dat", "wb");
+        if (archivo == nullptr || archivoTemp == nullptr) {
+            cout << "No se pudo abrir los archivos para eliminación.\n";
+            return;
+        }
+
+        Producto producto;
+        bool encontrado = false;
+        while (fread(&producto, sizeof(Producto), 1, archivo) == 1) {
+            if (producto.id == idBusqueda) {
+                encontrado = true;
+            } else {
+                fwrite(&producto, sizeof(Producto), 1, archivoTemp);
+            }
+        }
+        fclose(archivo);
+        fclose(archivoTemp);
+
+        remove("productos.dat");
+        rename("temp.dat", "productos.dat");
+
+        if (encontrado) {
+            cout << "Producto eliminado con éxito.\n";
+        } else {
+            cout << "Producto con ID " << idBusqueda << " no encontrado.\n";
+        }
+    }
+
+
+    // Método para buscar un producto por ID
+    Producto buscarProducto(int idBusqueda) {
+        FILE* archivo = fopen(_fileName, "rb");
+        if (archivo == nullptr) {
+            cout << "No se pudo abrir el archivo para lectura.\n";
+            return Producto();
+        }
+
+        Producto producto;
+        while (fread(&producto, sizeof(Producto), 1, archivo) == 1) {
+            if (producto.id == idBusqueda) {
+                fclose(archivo);
+                cout << "Producto con ID " << idBusqueda << " encontrado.\n";
+                producto.mostrar(); // se puede quitar no es necesario tenerlo
+                return producto;
+            }
+        }
+        fclose(archivo);
+        cout << "Producto con ID " << idBusqueda << " no encontrado.\n";
+        return Producto(); // Retorna un producto vacío si no se encuentra
+    }
+
+     // Método para registrar el producto en el archivo
+    void guardarEnArchivo() {
+        FILE* archivo = fopen(_fileName, "ab"); // "ab" para añadir en binario
+        if (archivo == nullptr) {
+            cout << "No se pudo abrir el archivo.\n";
+            return;
+        }
+        Producto producto;
+        ArchivoProducto file_prod;
+        producto.registrar();
+        producto.id = file_prod.getLastId();
+        fwrite(&producto, sizeof(Producto), 1, archivo);
+        fclose(archivo);
+        cout << "Producto guardado.\n";
+    }
+
+    bool idExists(int id){
+        FILE* archivo = fopen(_fileName, "rb");
+        if (archivo == nullptr) {
+            cout << "No se pudo abrir el archivo.\n";
+            return 0;
+        }
+
+        Producto producto;
+        while(fread(&producto, sizeof(Producto), 1, archivo) == 1){
+            if(id == producto.id){
+                fclose(archivo);
+                return true;
+            }
+       }
+       fclose(archivo);
+       return false;
+    }
+
+    int getLastId(){
+        FILE* archivo = fopen(_fileName, "rb");
+        if (archivo == nullptr) {
+            cout << "No se pudo abrir el archivo.\n";
+            return 0;
+        }
+
+        Producto producto;
+        int lastId = 0;
+
+        while(fread(&producto, sizeof(Producto), 1, archivo) == 1){
+            lastId = producto.id;
+        };
+        lastId = producto.id + 1;
+        ArchivoProducto ar;
+        bool exists = ar.idExists(lastId);
+
+        while(exists){
+            lastId++;
+            exists = ar.idExists(lastId);
+        }
+
+        fclose(archivo);
+
+        return lastId;
+    }
+
+
+};
 
 
 #endif // PERSONA_CLASS_H_INCLUDED
