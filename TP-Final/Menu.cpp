@@ -8,6 +8,16 @@
 #include "ArchivoClientes.h"
 #include "ArchivoEmpleados.h"
 #include "ArchivoProveedores.h"
+#include "Venta.h"
+#include "ArchivoVentas.h"
+#include "DetalleVenta.h"
+#include "ArchivoDetallesVentas.h"
+#include "Compra.h"
+#include "ArchivoCompras.h"
+#include "DetalleCompra.h"
+#include "ArchivoDetallesCompras.h"
+#include "Producto.h"
+#include "ArchivoProductos.h"
 
 using namespace rlutil;
 using namespace std;
@@ -79,52 +89,158 @@ void Menu::menuPrincipal()
 
 void Menu::areaVentas()
 {
-    int op;
+    int op, op2, idVenta, idProducto;
+
+    Venta venta;
+    ArchivoVentas archivoVenta;
+
+    DetalleVenta detalleVenta;
+    ArchivoDetallesVentas archivoDetallesVenta;
+
+    Producto producto;
+    ArchivoProductos archivoProducto;
+
 
     do{
         cls();
 
-        cout << "+-------------------------------+" << endl;
-        cout << "|         AREA DE VENTAS        |" << endl;
-        cout << "+-------------------------------+" << endl;
-        cout << "|1 - Registrar Venta.           |" << endl;
-        cout << "|2 - Mostrar Venta.             |" << endl;
-        cout << "|3 - Mostrar Detalles de Venta. |" << endl;
-        cout << "|4 - Mostrar Factura de Venta.  |" << endl;
-        cout << "|5 - Historial Ventas.          |" << endl;
-        cout << "|6 - Ganancia Mensual.          |" << endl;
-        cout << "|7 - Ganancia Anual.            |" << endl;
-        cout << "|0 - Atras.                     |" << endl;
-        cout << "+-------------------------------+" << endl;
+        cout << "+----------------------------------+" << endl;
+        cout << "|          AREA DE VENTAS          |" << endl;
+        cout << "+----------------------------------+" << endl;
+        cout << "|1 - Registrar Venta.              |" << endl;
+        cout << "|2 - Mostrar Venta.                |" << endl;
+        cout << "|3 - Mostrar Detalles de Venta.    |" << endl;
+        cout << "|4 - Historial Ventas.             |" << endl;
+        cout << "|5 - Historial Detalles de Ventas. |" << endl;
+        cout << "|0 - Atras.                        |" << endl;
+        cout << "+----------------------------------+" << endl;
         cout << "+-----------------+" << endl;
         cout << "|Elija una opcion: " << endl;
         cout << "+-----------------+" << endl;
 
-        locate(20,14);
+        locate(20,12);
         cin >> op;
+
+        cls();
 
         switch(op)
         {
             case 1:
-                // Metodos
+                cout << "+------------------------------------------------------+" << endl;
+                cout << "|    Ingrese los datos de la venta que quiere cargar   |" << endl;
+                cout << "+------------------------------------------------------+" << endl << endl;
+
+                cout << "Ingrese el ID Venta: ";
+                cin >> idVenta;
+
+                venta.cargar(idVenta);
+
+                cls();
+                cout << "+--------------------------------------------------+" << endl;
+                cout << "|    Informacion de la venta en proceso de carga   |" << endl;
+                cout << "+--------------------------------------------------+" << endl << endl;
+
+                venta.mostrar();
+
+                cout << endl;
+
+                cout << "+---------------------------------------------------------+" << endl;
+                cout << "|    Ingrese los productos que quiere cargar a la venta   |" << endl;
+                cout << "+---------------------------------------------------------+" << endl << endl;
+
+                do{
+                    bool productoValido = false;
+
+                    do{
+                        cout << "---------------------------" << endl;
+                        cout << "Ingrese el ID Producto: ";
+                        cin >> idProducto;
+
+                        detalleVenta.setIdProducto(idProducto);
+
+                        int posicion;
+
+                        posicion = archivoProducto.buscarPorId(detalleVenta.getIdProducto());
+                        producto = archivoProducto.buscarProducto(posicion);
+
+                        if(producto.getIdProducto() == detalleVenta.getIdProducto())
+                        {
+                            productoValido = true;
+                            archivoVenta.agregarVenta(venta);
+                            detalleVenta.cargar(idVenta, idProducto, archivoProducto);
+                        }
+                        else
+                        {
+                            cout << "Producto no encontrado. Intente nuevamente." << endl;
+                        }
+                    }while(!productoValido);
+
+                    archivoDetallesVenta.agregarDetalleVenta(detalleVenta);
+
+                    venta.setTotal(venta.getTotal() + detalleVenta.getCantidad() * detalleVenta.getPrecioUnit());
+                    archivoVenta.modificarVenta(idVenta, venta);
+
+
+                    cout << endl;
+
+                    cout << "+------------------------------------------------------+" << endl;
+                    cout << "|    Desea seguir ingresando productos? (1 Si/ 0 No)   |" << endl;
+                    cout << "+------------------------------------------------------+" << endl << endl;
+
+                    cin >> op2;
+
+                }while(op2 != 0);
+
+                cls();
+                cout << "+-----------------------------------------------------+" << endl;
+                cout << "|    Proceso de carga de venta terminado con exito    |" << endl;
+                cout << "+-----------------------------------------------------+" << endl;
+                anykey();
                 break;
             case 2:
-                // Metodos
+                cout << "+----------------------------------------------+" << endl;
+                cout << "|  Ingrese el ID de la venta que desea mostrar: " << endl;
+                cout << "+----------------------------------------------+" << endl;
+
+                locate(49,2);
+                cin >> idVenta;
+
+                cout << endl;
+
+                archivoVenta.mostrarVenta(idVenta);
+                anykey();
                 break;
             case 3:
-                // Metodos
+                cout << "+-----------------------------------------------------------+" << endl;
+                cout << "|  Ingrese el ID de la venta que desea mostrar sus detalles: " << endl;
+                cout << "+-----------------------------------------------------------+" << endl;
+
+                locate(62,2);
+                cin >> idVenta;
+
+                cout << endl;
+
+                archivoDetallesVenta.mostrarDetallesVenta(idVenta);
+
+                anykey();
                 break;
             case 4:
-                // Metodos
+                cout << "+---------------------------+" << endl;
+                cout << "|    Historial de ventas    |" << endl;
+                cout << "+---------------------------+" << endl << endl;
+
+                archivoVenta.listaVentas();
+
+                anykey();
                 break;
             case 5:
-                // Metodos
-                break;
-            case 6:
-                // Metodos
-                break;
-            case 7:
-                // Metodos
+                cout << "+---------------------------------------+" << endl;
+                cout << "|    Historial de detalles de ventas    |" << endl;
+                cout << "+---------------------------------------+" << endl << endl;
+
+                archivoDetallesVenta.listaDetallesVentas();
+
+                anykey();
                 break;
             case 0:
                 cls();
@@ -145,52 +261,158 @@ void Menu::areaVentas()
 
 void Menu::areaCompras()
 {
-    int op;
+    int op, op2, idCompra, idProducto;
+
+    Compra compra;
+    ArchivoCompras archivoCompra;
+
+    DetalleCompra detalleCompra;
+    ArchivoDetallesCompras archivoDetallesCompra;
+
+    Producto producto;
+    ArchivoProductos archivoProducto;
 
     do{
         cls();
 
-        cout << "+--------------------------------+" << endl;
-        cout << "|         AREA DE COMPRAS        |" << endl;
-        cout << "+--------------------------------+" << endl;
-        cout << "|1 - Registrar Compra.           |" << endl;
-        cout << "|2 - Mostrar Compra.             |" << endl;
-        cout << "|3 - Mostrar Detalles de Compra. |" << endl;
-        cout << "|4 - Mostrar Factura de Compra.  |" << endl;
-        cout << "|5 - Historial Compras.          |" << endl;
-        cout << "|6 - Gasto Mensual.              |" << endl;
-        cout << "|7 - Gasto Anual.                |" << endl;
-        cout << "|0 - Atras.                      |" << endl;
-        cout << "+--------------------------------+" << endl;
+        cout << "+-----------------------------------+" << endl;
+        cout << "|          AREA DE COMPRAS          |" << endl;
+        cout << "+-----------------------------------+" << endl;
+        cout << "|1 - Registrar Compra.              |" << endl;
+        cout << "|2 - Mostrar Compra.                |" << endl;
+        cout << "|3 - Mostrar Detalles de Compra.    |" << endl;
+        cout << "|4 - Historial Compras.             |" << endl;
+        cout << "|5 - Historial Detalles de compras. |" << endl;
+        cout << "|0 - Atras.                         |" << endl;
+        cout << "+-----------------------------------+" << endl;
         cout << "+-----------------+" << endl;
         cout << "|Elija una opcion: " << endl;
         cout << "+-----------------+" << endl;
 
-        locate(20,14);
+        locate(20,12);
         cin >> op;
+
+        cls();
 
         switch(op)
         {
             case 1:
-                // Metodos
+                cout << "+-------------------------------------------------------+" << endl;
+                cout << "|    Ingrese los datos de la compra que quiere cargar   |" << endl;
+                cout << "+-------------------------------------------------------+" << endl << endl;
+
+                cout << "Ingrese el ID Compra: ";
+                cin >> idCompra;
+
+                compra.cargar(idCompra);
+
+                cls();
+                cout << "+---------------------------------------------------+" << endl;
+                cout << "|    Informacion de la compra en proceso de carga   |" << endl;
+                cout << "+---------------------------------------------------+" << endl << endl;
+
+                compra.mostrar();
+
+                cout << endl;
+
+                cout << "+----------------------------------------------------------+" << endl;
+                cout << "|    Ingrese los productos que quiere cargar a la compra   |" << endl;
+                cout << "+----------------------------------------------------------+" << endl << endl;
+
+                do
+                {
+                    bool productoValido = false;
+
+                    do
+                    {
+                        cout << "---------------------------" << endl;
+                        cout << "Ingrese el ID Producto: ";
+                        cin >> idProducto;
+
+                        detalleCompra.setIdProducto(idProducto);
+
+                        int posicion;
+                        posicion = archivoProducto.buscarPorId(detalleCompra.getIdProducto());
+
+                        producto = archivoProducto.buscarProducto(posicion);
+
+                        if(producto.getIdProducto() == detalleCompra.getIdProducto())
+                        {
+                            productoValido = true;
+                            archivoCompra.agregarCompra(compra);
+                            detalleCompra.cargar(idCompra, idProducto);
+                        }
+                        else
+                        {
+                            cout << "Producto no encontrado. Intente nuevamente." << endl;
+                        }
+                    }while(!productoValido);
+
+                    archivoDetallesCompra.agregarDetalleCompra(detalleCompra);
+
+                    compra.setTotal(compra.getTotal() + detalleCompra.getCantidad() * detalleCompra.getPrecioUnit());
+                    archivoCompra.modificarCompra(idCompra, compra);
+
+                    cout << endl;
+
+                    cout << "+------------------------------------------------------+" << endl;
+                    cout << "|    Desea seguir ingresando productos? (1 Si/ 0 No)   |" << endl;
+                    cout << "+------------------------------------------------------+" << endl << endl;
+
+                    cin >> op2;
+
+                }while(op2 != 0);
+
+                cls();
+                cout << "+-----------------------------------------------------+" << endl;
+                cout << "|    Proceso de carga de compra terminado con exito   |" << endl;
+                cout << "+-----------------------------------------------------+" << endl;
+                anykey();
                 break;
             case 2:
-                // Metodos
+                cout << "+-----------------------------------------------+" << endl;
+                cout << "|  Ingrese el ID de la compra que desea mostrar: " << endl;
+                cout << "+-----------------------------------------------+" << endl;
+
+                locate(50,2);
+                cin >> idCompra;
+
+                cout << endl;
+
+                archivoCompra.mostrarCompra(idCompra);
+                anykey();
                 break;
             case 3:
-                // Metodos
+                cout << "+------------------------------------------------------------+" << endl;
+                cout << "|  Ingrese el ID de la compra que desea mostrar sus detalles: " << endl;
+                cout << "+------------------------------------------------------------+" << endl;
+
+                locate(63,2);
+                cin >> idCompra;
+
+                cout << endl;
+
+                archivoDetallesCompra.mostrarDetallesCompra(idCompra);
+
+                anykey();
                 break;
             case 4:
-                // Metodos
+                cout << "+----------------------------+" << endl;
+                cout << "|    Historial de compras    |" << endl;
+                cout << "+----------------------------+" << endl << endl;
+
+                archivoCompra.listaCompras();
+
+                anykey();
                 break;
             case 5:
-                // Metodos
-                break;
-            case 6:
-                // Metodos
-                break;
-            case 7:
-                // Metodos
+                cout << "+----------------------------------------+" << endl;
+                cout << "|    Historial de detalles de compras    |" << endl;
+                cout << "+----------------------------------------+" << endl << endl;
+
+                archivoDetallesCompra.listaDetallesCompras();
+
+                anykey();
                 break;
             case 0:
                 cls();
@@ -261,7 +483,10 @@ void Menu::areaAdministrativa()
 
 void Menu::areaInventario()
 {
-    int op;
+    int op, idProducto;
+
+    Producto producto;
+    ArchivoProductos archivoProducto;
 
     do{
         cls();
@@ -282,19 +507,63 @@ void Menu::areaInventario()
         locate(20,11);
         cin >> op;
 
+        cls();
+
         switch(op)
         {
             case 1:
-                // Metodos
+                cout << "+---------------------------------------------------------+" << endl;
+                cout << "|   Ingrese los datos del producto que quiere registrar   |" << endl;
+                cout << "+---------------------------------------------------------+" << endl << endl;
+
+                producto.cargar();
+                archivoProducto.agregarProducto(producto);
                 break;
             case 2:
-                // Metodos
+                cout << "+-----------------------------------------------+" << endl;
+                cout << "|  Ingrese el ID del producto que desea mostrar: " << endl;
+                cout << "+-----------------------------------------------+" << endl;
+
+                locate(51,2);
+                cin >> idProducto;
+
+                cout << endl;
+
+                archivoProducto.mostrarProducto(idProducto);
+                anykey();
                 break;
             case 3:
-                // Metodos
+                cout << "+-------------------------------------------------+" << endl;
+                cout << "|  Ingrese el ID del producto que desea modificar: " << endl;
+                cout << "+-------------------------------------------------+" << endl;
+
+                locate(52,2);
+                cin >> idProducto;
+
+                if(archivoProducto.buscarPorId(idProducto) != -1)
+                {
+                    archivoProducto.mostrarProducto(idProducto);
+
+                    cout << endl;
+
+                    cout << "+-------------------------------------------+" << endl;
+                    cout << "|   Ingrese los nuevos datos del producto   |" << endl;
+                    cout << "+-------------------------------------------+" << endl << endl;
+
+                    producto.cargar();
+                    archivoProducto.modificarProducto(idProducto, producto);
+                }
+                else
+                {
+                    cout << endl;
+                    archivoProducto.mostrarProducto(idProducto);
+                    anykey();
+                }
                 break;
             case 4:
-                // Metodos
+                archivoProducto.listaProductos();
+
+                anykey();
                 break;
             case 0:
                 cls();
@@ -364,6 +633,8 @@ void Menu::menuClientes()
 
                 locate(50,2);
                 cin >> idCliente;
+
+                cout << endl;
 
                 archivoCliente.mostrarCliente(idCliente);
                 anykey();
@@ -462,6 +733,8 @@ void Menu::menuEmpleados()
                 locate(50,2);
                 cin >> idEmpleado;
 
+                cout << endl;
+
                 archivoEmpleado.mostrarEmpleado(idEmpleado);
 
                 anykey();
@@ -559,6 +832,8 @@ void Menu::menuProveedores()
 
                 locate(50,2);
                 cin >> idProveedor;
+
+                cout << endl;
 
                 archivoProveedor.mostrarProveedor(idProveedor);
 

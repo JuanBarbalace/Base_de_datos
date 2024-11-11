@@ -94,7 +94,7 @@ void Persona::cargar()
     cout << "Ingrese el Apellido: ";
     cin.getline(_apellido, sizeof(_apellido));
 
-    cout << "Ingrese el Numero de Documento: ";
+    cout << "Ingrese el Numero de Documento (sin puntos): ";
     cin.getline(_nroDoc, sizeof(_nroDoc));
 
     cout << "Ingrese la Direcci¢n: ";

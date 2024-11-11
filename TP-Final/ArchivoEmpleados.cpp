@@ -50,7 +50,9 @@ void ArchivoEmpleados::mostrarEmpleado(int idEmpleado)
 
 void ArchivoEmpleados::modificarEmpleado(int idEmpleado, const Empleado &empleadoAModificar)
 {
-    int posicion = buscarPorId(idEmpleado);
+    int posicion;
+
+    posicion = buscarPorId(idEmpleado);
 
     if(posicion != -1)
     {
@@ -65,7 +67,9 @@ void ArchivoEmpleados::modificarEmpleado(int idEmpleado, const Empleado &emplead
 
 void ArchivoEmpleados::listaEmpleados()
 {
-    int cantidad = getCantidadRegistros();
+    int cantidad;
+
+    cantidad = getCantidadRegistros();
 
     Empleado* empleados;
 
@@ -99,7 +103,9 @@ void ArchivoEmpleados::listaEmpleados()
 
 int ArchivoEmpleados::buscarPorId(int idEmpleado)
 {
-    int posicion = 0;
+    int posicion;
+
+    posicion = 0;
 
     FILE *pFile;
     pFile = fopen(_fileName.c_str(), "rb");

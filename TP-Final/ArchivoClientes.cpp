@@ -50,7 +50,9 @@ void ArchivoClientes::mostrarCliente(int idCliente)
 
 void ArchivoClientes::modificarCliente(int idCliente, const Cliente &clienteAModificar)
 {
-    int posicion = buscarPorId(idCliente);
+    int posicion;
+
+    posicion = buscarPorId(idCliente);
 
     if(posicion != -1)
     {
@@ -65,7 +67,9 @@ void ArchivoClientes::modificarCliente(int idCliente, const Cliente &clienteAMod
 
 void ArchivoClientes::listaClientes()
 {
-    int cantidad = getCantidadRegistros();
+    int cantidad;
+
+    cantidad = getCantidadRegistros();
 
     Cliente* clientes;
 
@@ -99,7 +103,9 @@ void ArchivoClientes::listaClientes()
 
 int ArchivoClientes::buscarPorId(int idCliente)
 {
-    int posicion = 0;
+    int posicion;
+
+    posicion = 0;
 
     FILE *pFile;
     pFile = fopen(_fileName.c_str(), "rb");
@@ -125,6 +131,7 @@ int ArchivoClientes::buscarPorId(int idCliente)
 
     return -1;
 }
+
 
 
 

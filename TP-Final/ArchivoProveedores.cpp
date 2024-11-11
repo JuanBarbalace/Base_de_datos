@@ -50,7 +50,9 @@ void ArchivoProveedores::mostrarProveedor(int idProveedor)
 
 void ArchivoProveedores::modificarProveedor(int idProveedor, const Proveedor &proveedorAModificar)
 {
-    int posicion = buscarPorId(idProveedor);
+    int posicion;
+
+    posicion = buscarPorId(idProveedor);
 
     if(posicion != -1)
     {
@@ -65,7 +67,9 @@ void ArchivoProveedores::modificarProveedor(int idProveedor, const Proveedor &pr
 
 void ArchivoProveedores::listaProveedores()
 {
-    int cantidad = getCantidadRegistros();
+    int cantidad;
+
+    cantidad = getCantidadRegistros();
 
     Proveedor* proveedores;
 
@@ -99,7 +103,9 @@ void ArchivoProveedores::listaProveedores()
 
 int ArchivoProveedores::buscarPorId(int idProveedor)
 {
-    int posicion = 0;
+    int posicion;
+
+    posicion = 0;
 
     FILE *pFile;
     pFile = fopen(_fileName.c_str(), "rb");
@@ -125,6 +131,7 @@ int ArchivoProveedores::buscarPorId(int idProveedor)
 
     return -1;
 }
+
 
 
 

@@ -33,7 +33,9 @@ void Empleado::cargar()
 {
     cout << "Ingrese el ID Empleado: ";
     cin >> _idEmpleado;
+
     Persona::cargar();
+
     cout << "Ingrese la Fecha de Contratacion (dd/mm/aaaa): " << endl;
     _fechaContratacion.cargar();
 

@@ -1,6 +1,5 @@
 #pragma once
 #include "Persona.h"
-#include <string>
 
 class Empleado : public Persona
 {

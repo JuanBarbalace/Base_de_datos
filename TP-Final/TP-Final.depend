@@ -6,32 +6,32 @@
 1730068571 c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\fecha.h
 	"string"
 
-1730676228 source:c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\persona.cpp
+1731094651 source:c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\persona.cpp
 	"Persona.h"
 	<iostream>
 	"cstring"
 
-1730069095 c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\persona.h
+1731287631 c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\persona.h
 	"Fecha.h"
 
 1730676319 source:c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\fecha.cpp
 	"Fecha.h"
 	<iostream>
 
-1730676136 source:c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\cliente.cpp
+1731343582 source:c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\cliente.cpp
 	"Cliente.h"
+	"cstring"
 	<iostream>
 
 1730122290 c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\cliente.h
 	"Persona.h"
 
-1730676201 source:c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\empleado.cpp
+1731348514 source:c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\empleado.cpp
 	"Empleado.h"
 	<iostream>
 
-1730409203 c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\empleado.h
+1731125982 c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\empleado.h
 	"Persona.h"
-	<string>
 
 1730402702 source:c:\users\nicol\onedrive\desktop\codigogit\tp-final\cliente.cpp
 	"Cliente.h"
@@ -178,7 +178,7 @@
 	"rlutil.h"
 	<iostream>
 
-1730675621 source:c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\archivoclientes.cpp
+1731347897 source:c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\archivoclientes.cpp
 	"ArchivoClientes.h"
 	<cstdio>
 	<iostream>
@@ -187,7 +187,7 @@
 	"Cliente.h"
 	<string>
 
-1730675576 source:c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\archivoempleados.cpp
+1731348149 source:c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\archivoempleados.cpp
 	"ArchivoEmpleados.h"
 	<cstdio>
 	<iostream>
@@ -196,7 +196,7 @@
 	"Empleado.h"
 	<string>
 
-1730675711 source:c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\archivoproveedores.cpp
+1731348312 source:c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\archivoproveedores.cpp
 	"ArchivoProveedores.h"
 	<cstdio>
 	<iostream>
@@ -224,7 +224,7 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1730751819 source:c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\menu.cpp
+1731350349 source:c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\menu.cpp
 	"Menu.h"
 	"rlutil.h"
 	<iostream>
@@ -234,8 +234,103 @@
 	"ArchivoClientes.h"
 	"ArchivoEmpleados.h"
 	"ArchivoProveedores.h"
+	"Venta.h"
+	"ArchivoVentas.h"
+	"DetalleVenta.h"
+	"ArchivoDetallesVentas.h"
+	"Compra.h"
+	"ArchivoCompras.h"
+	"DetalleCompra.h"
+	"ArchivoDetallesCompras.h"
+	"Producto.h"
+	"ArchivoProductos.h"
 
 1730676250 source:c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\proveedor.cpp
 	"Proveedor.h"
+	<iostream>
+
+1731347466 source:c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\venta.cpp
+	"Venta.h"
+	<iostream>
+
+1731179559 c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\venta.h
+	"Fecha.h"
+
+1731347055 c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\archivoventas.h
+	"Venta.h"
+	<string>
+
+1731348348 source:c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\archivoventas.cpp
+	"ArchivoVentas.h"
+	<cstdio>
+	<iostream>
+
+1731348495 source:c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\detalleventa.cpp
+	"DetalleVenta.h"
+	<iostream>
+
+1731345228 c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\detalleventa.h
+	"ArchivoProductos.h"
+	"Producto.h"
+
+1731348046 source:c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\archivodetallesventas.cpp
+	"ArchivoDetallesVentas.h"
+	<cstdio>
+	<iostream>
+
+1731346898 c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\archivodetallesventas.h
+	"Venta.h"
+	"DetalleVenta.h"
+	"ArchivoVentas.h"
+	<string>
+
+1731349171 source:c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\archivocompras.cpp
+	"ArchivoCompras.h"
+	<cstdio>
+	<iostream>
+
+1731349883 c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\archivocompras.h
+	"Compra.h"
+	<string>
+
+1731349910 source:c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\archivodetallescompras.cpp
+	"ArchivoDetallesCompras.h"
+	<cstdio>
+	<iostream>
+
+1731349115 c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\archivodetallescompras.h
+	"DetalleCompra.h"
+	"ArchivoCompras.h"
+	<string>
+
+1731348232 source:c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\archivoproductos.cpp
+	"ArchivoProductos.h"
+	<cstdio>
+	<iostream>
+
+1731333924 c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\archivoproductos.h
+	"Producto.h"
+	<string>
+
+1731329319 source:c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\compra.cpp
+	"Compra.h"
+	<iostream>
+
+1731329286 c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\compra.h
+	"Fecha.h"
+
+1731349922 source:c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\detallecompra.cpp
+	"DetalleCompra.h"
+	<iostream>
+
+1731348739 c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\detallecompra.h
+	"ArchivoProductos.h"
+	"Producto.h"
+
+1731343790 c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\producto.h
+
+1731343656 source:c:\users\nicol\onedrive\desktop\estudio\universidad\materias-c2\programacion - 2\9 - tp - final\tp final grupo\tp-final\producto.cpp
+	"Producto.h"
+	<cstring>
 	<iostream>
 

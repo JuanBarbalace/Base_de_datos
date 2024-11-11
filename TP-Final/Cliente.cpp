@@ -1,4 +1,5 @@
 #include "Cliente.h"
+#include "cstring"
 #include <iostream>
 
 using namespace std;
@@ -24,6 +25,7 @@ void Cliente::cargar()
     cout << "Ingrese el ID Cliente: ";
     cin.ignore();
     cin >> _idCliente;
+
     Persona::cargar();
 
     system("cls");
